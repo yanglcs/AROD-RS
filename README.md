@@ -1,5 +1,5 @@
 # AROD-RS
-Learning Adversarially Robust Object Detector with Consistency Regularization in Remote Sensing Images
+
 
 The full code will be released later...
 
