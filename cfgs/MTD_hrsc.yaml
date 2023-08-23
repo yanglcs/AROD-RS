@@ -1,0 +1,42 @@
+
+model:
+  backbone: 'vgg'
+  amp: False
+  cuda: True
+
+attack:
+  adv_type: 'mtd'
+  atk_iters: 20
+  step_size: 8
+
+data:
+  dataset: 'hrsc'
+  dataset_root: '../datas/hrsc/'
+  data_use: 'clean[2007]'
+  num_workers: 0 #8
+
+train:
+  basenet: 'ssd300_mAP_77.43_v2.pth'
+  batch_size: 16
+  resume: 'weights/ssd300_hrsc_adv3-cwat_clean_ft_final_480000.pth' #null
+  start_iter: 480000
+  multi_gpu: False
+  lr: 0.0001
+  max_iter: 600000
+  momentum: 0.9
+  weight_decay: 0.0005
+  gamma: 0.1
+  focal: False
+  clean_mix: True
+  save_folder: 'weights/'
+  log_folder: 'logs/'
+
+test:
+  trained_model: ''
+  save_folder: 'eval/'
+  confidence_threshold: 0.01
+  top_k: 5
+  robust: False
+  con_weights: [1.,1.]
+  save_tp_fp: None
+  log_folder: 'logs/'

@@ -1,0 +1,10 @@
+voc:
+  clean: JPEGImages
+coco:
+  clean: clean
+hrsc:
+  clean: JPEGImages
+ucas:
+  clean: JPEGImages
+dior:
+  clean: JPEGImages

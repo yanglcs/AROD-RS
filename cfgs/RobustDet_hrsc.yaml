@@ -1,0 +1,47 @@
+
+model:
+  backbone: 'vgg' #'vgg'resnet'od_resnet18
+  cfr: True #False #True
+  cfr_layer: 21
+  amp: False
+  cuda: True
+  multi_fc: False
+  k_count: 4
+
+attack:
+  adv_type: 'mtd'
+  atk_iters: 20
+  step_size: 8
+
+data:
+  dataset: 'hrsc'
+  dataset_root: '../datas/hrsc/'
+  data_use: 'clean[2007]'
+  num_workers: 0 #8
+
+train:
+  basenet: 'weights/ssd300_hrsc_adv-mtd_dconv4_step8_clean_adc_final_40000.pth' 
+  batch_size: 16 #16 #32
+  resume: 'weights/ssd300_hrsc_adv-mtd_dconv4_step8_clean_ft_rec21_final_960000.pth' #  #null  #继续训练的weight目录
+  start_iter: 720000 #0 #继续训练的迭代次数
+  multi_gpu: False
+  lr: 0.000005 #0.0000001
+  max_iter: 960000 #40000
+  momentum: 0.9 #0.9
+  weight_decay: 0.005
+  gamma: 0.1
+  focal: False #False--------------------------------------------------------221028test
+  adc: 1
+  save_folder: 'weights/'
+  log_folder: 'logs/'
+  visdom: False #True
+
+test:
+  trained_model: ''
+  save_folder: 'eval/'
+  confidence_threshold: 0.01
+  top_k: 5
+  robust: True
+  con_weights: [1.,1.]
+  save_tp_fp: None
+  log_folder: 'logs/'
